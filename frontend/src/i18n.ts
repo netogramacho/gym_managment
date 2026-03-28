@@ -3,8 +3,10 @@ import { initReactI18next } from 'react-i18next'
 
 import ptBRAuth from './locales/pt_BR/auth.json'
 import ptBRErrors from './locales/pt_BR/errors.json'
+import ptBRNavigation from './locales/pt_BR/navigation.json'
 import enAuth from './locales/en/auth.json'
 import enErrors from './locales/en/errors.json'
+import enNavigation from './locales/en/navigation.json'
 
 i18n.use(initReactI18next).init({
   lng: 'pt_BR',
@@ -16,10 +18,12 @@ i18n.use(initReactI18next).init({
     pt_BR: {
       auth: ptBRAuth,
       errors: ptBRErrors,
+      navigation: ptBRNavigation,
     },
     en: {
       auth: enAuth,
       errors: enErrors,
+      navigation: enNavigation,
     },
   },
 })
