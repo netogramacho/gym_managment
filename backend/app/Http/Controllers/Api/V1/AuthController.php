@@ -29,7 +29,7 @@ class AuthController extends Controller
         );
 
         if ($result === null) {
-            return response()->json(['message' => 'Invalid credentials.'], 401);
+            return response()->json(['message' => __('auth.invalid_credentials')], 401);
         }
 
         return new AuthResponse($result['user'], $result['token']);
