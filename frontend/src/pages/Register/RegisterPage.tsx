@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { useAuth } from '../../contexts/AuthContext'
 
 export function RegisterPage() {
   const { register } = useAuth()
   const navigate = useNavigate()
+  const { t } = useTranslation('auth')
 
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -22,7 +24,7 @@ export function RegisterPage() {
       await register({ name, email, password, password_confirmation: passwordConfirmation })
       navigate('/')
     } catch {
-      setError('Registration failed. Please check your data and try again.')
+      setError(t('register.error'))
     } finally {
       setIsLoading(false)
     }
@@ -31,12 +33,14 @@ export function RegisterPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
       <div className="w-full max-w-md p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-sm">
-        <h1 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">Create account</h1>
+        <h1 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">
+          {t('register.title')}
+        </h1>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-              Name
+              {t('register.name')}
             </label>
             <input
               type="text"
@@ -49,7 +53,7 @@ export function RegisterPage() {
 
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-              Email
+              {t('register.email')}
             </label>
             <input
               type="email"
@@ -62,7 +66,7 @@ export function RegisterPage() {
 
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-              Password
+              {t('register.password')}
             </label>
             <input
               type="password"
@@ -75,7 +79,7 @@ export function RegisterPage() {
 
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-              Confirm password
+              {t('register.password_confirmation')}
             </label>
             <input
               type="password"
@@ -93,14 +97,14 @@ export function RegisterPage() {
             disabled={isLoading}
             className="w-full py-2 px-4 bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-white font-medium rounded-lg transition-colors"
           >
-            {isLoading ? 'Creating account...' : 'Create account'}
+            {isLoading ? t('register.submitting') : t('register.submit')}
           </button>
         </form>
 
         <p className="mt-4 text-sm text-center text-gray-600 dark:text-gray-400">
-          Already have an account?{' '}
+          {t('register.already_have_account')}{' '}
           <Link to="/login" className="text-indigo-600 hover:underline">
-            Sign in
+            {t('register.login_link')}
           </Link>
         </p>
       </div>
