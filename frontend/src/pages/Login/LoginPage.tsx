@@ -19,8 +19,8 @@ export function LoginPage() {
     setIsLoading(true)
 
     try {
-      await login({ email, password })
-      navigate('/')
+      const user = await login({ email, password })
+      navigate(user.role === 'admin' ? '/admin' : '/')
     } catch {
       setError(t('login.invalid_credentials'))
     } finally {

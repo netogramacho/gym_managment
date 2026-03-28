@@ -25,4 +25,12 @@ export const exerciseService = {
   async remove(id: string): Promise<void> {
     await api.delete(`/exercises/${id}`)
   },
+
+  async importCsv(file: File): Promise<void> {
+    const formData = new FormData()
+    formData.append('file', file)
+    await api.post('/exercises/import', formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    })
+  },
 }

@@ -6,8 +6,8 @@ interface AuthContextValue {
   user: User | null
   isAuthenticated: boolean
   isLoading: boolean
-  login: (payload: LoginPayload) => Promise<void>
-  register: (payload: RegisterPayload) => Promise<void>
+  login: (payload: LoginPayload) => Promise<User>
+  register: (payload: RegisterPayload) => Promise<User>
   logout: () => Promise<void>
 }
 
@@ -31,16 +31,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       .finally(() => setIsLoading(false))
   }, [])
 
-  async function login(payload: LoginPayload) {
+  async function login(payload: LoginPayload): Promise<User> {
     const { token, user } = await authService.login(payload)
     localStorage.setItem('token', token)
     setUser(user)
+    return user
   }
 
-  async function register(payload: RegisterPayload) {
+  async function register(payload: RegisterPayload): Promise<User> {
     const { token, user } = await authService.register(payload)
     localStorage.setItem('token', token)
     setUser(user)
+    return user
   }
 
   async function logout() {

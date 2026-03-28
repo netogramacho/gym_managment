@@ -1,17 +1,17 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Pencil, Trash2, Plus } from 'lucide-react'
-import { muscleGroupService } from '../../services/muscleGroupService'
-import { Modal } from '../../components/ui/Modal'
-import { ConfirmDialog } from '../../components/ui/ConfirmDialog'
-import type { MuscleGroup } from '../../types/muscleGroup'
+import { muscleGroupService } from '../../../services/muscleGroupService'
+import { Modal } from '../../../components/ui/Modal'
+import { ConfirmDialog } from '../../../components/ui/ConfirmDialog'
+import { CsvImportButton } from '../../../components/ui/CsvImportButton'
+import { useInfiniteScroll } from '../../../hooks/useInfiniteScroll'
+import type { MuscleGroup } from '../../../types/muscleGroup'
 
 export function MuscleGroupsPage() {
   const { t } = useTranslation('muscle_groups')
-
-  const [items, setItems] = useState<MuscleGroup[]>([])
-  const [isLoading, setIsLoading] = useState(true)
-  const [loadError, setLoadError] = useState<string | null>(null)
+  const { items, isLoading, isLoadingMore, hasError, sentinelRef, reload } =
+    useInfiniteScroll((page) => muscleGroupService.list(page))
 
   const [isFormOpen, setIsFormOpen] = useState(false)
   const [editing, setEditing] = useState<MuscleGroup | undefined>(undefined)
@@ -22,20 +22,7 @@ export function MuscleGroupsPage() {
   const [deleting, setDeleting] = useState<MuscleGroup | undefined>(undefined)
   const [isDeleting, setIsDeleting] = useState(false)
 
-  useEffect(() => { fetchItems() }, [])
-
-  async function fetchItems() {
-    setIsLoading(true)
-    setLoadError(null)
-    try {
-      const res = await muscleGroupService.list()
-      setItems(res.data)
-    } catch {
-      setLoadError(t('errors.load'))
-    } finally {
-      setIsLoading(false)
-    }
-  }
+  const [importError, setImportError] = useState<string | null>(null)
 
   function openNew() {
     setEditing(undefined)
@@ -56,14 +43,11 @@ export function MuscleGroupsPage() {
     setIsSaving(true)
     setSaveError(null)
     try {
-      const saved = editing
+      editing
         ? await muscleGroupService.update(editing.id, formName)
         : await muscleGroupService.create(formName)
-      setItems((prev) => {
-        const exists = prev.find((i) => i.id === saved.id)
-        return exists ? prev.map((i) => (i.id === saved.id ? saved : i)) : [saved, ...prev]
-      })
       setIsFormOpen(false)
+      reload()
     } catch {
       setSaveError(t('errors.save'))
     } finally {
@@ -76,8 +60,8 @@ export function MuscleGroupsPage() {
     setIsDeleting(true)
     try {
       await muscleGroupService.remove(deleting.id)
-      setItems((prev) => prev.filter((i) => i.id !== deleting.id))
       setDeleting(undefined)
+      reload()
     } catch {
     } finally {
       setIsDeleting(false)
@@ -88,18 +72,34 @@ export function MuscleGroupsPage() {
     <div>
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-semibold text-gray-900 dark:text-white">{t('title')}</h1>
-        <button
-          onClick={openNew}
-          className="cursor-pointer flex items-center gap-2 px-4 py-2 text-sm rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition-colors"
-        >
-          <Plus size={16} />
-          {t('new')}
-        </button>
+        <div className="flex items-center gap-2">
+          <CsvImportButton
+            onImport={async (file) => {
+              setImportError(null)
+              try {
+                await muscleGroupService.importCsv(file)
+                reload()
+              } catch {
+                setImportError(t('errors.import'))
+              }
+            }}
+            label={t('import_csv')}
+            loadingLabel={t('importing')}
+          />
+          <button
+            onClick={openNew}
+            className="cursor-pointer flex items-center gap-2 px-4 py-2 text-sm rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition-colors"
+          >
+            <Plus size={16} />
+            {t('new')}
+          </button>
+        </div>
       </div>
 
-      {loadError && <p className="text-sm text-red-500">{loadError}</p>}
+      {importError && <p className="text-sm text-red-500 mb-4">{importError}</p>}
+      {hasError && <p className="text-sm text-red-500">{t('errors.load')}</p>}
 
-      {!loadError && (
+      {!hasError && (
         <div className="rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden">
           <table className="w-full text-sm">
             <thead className="bg-gray-50 dark:bg-gray-800 text-gray-500 dark:text-gray-400">
@@ -109,7 +109,7 @@ export function MuscleGroupsPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
-              {items.length === 0 ? (
+              {items.length === 0 && !isLoading ? (
                 <tr>
                   <td colSpan={2} className="px-4 py-6 text-center text-sm text-gray-400 dark:text-gray-500">
                     {t('empty')}
@@ -143,6 +143,13 @@ export function MuscleGroupsPage() {
             </tbody>
           </table>
         </div>
+      )}
+
+      <div ref={sentinelRef} />
+      {isLoadingMore && (
+        <p className="text-center text-sm text-gray-400 dark:text-gray-500 py-4">
+          {t('loading_more')}
+        </p>
       )}
 
       <Modal

@@ -1,6 +1,9 @@
 {
   "title": "Muscle Groups",
   "new": "New group",
+  "loading_more": "Loading more...",
+  "import_csv": "Import CSV",
+  "importing": "Importing...",
   "edit": "Edit group",
   "empty": "No muscle groups found.",
   "fields": {
@@ -22,6 +25,7 @@
   "errors": {
     "load": "Failed to load muscle groups.",
     "save": "Failed to save muscle group.",
-    "delete": "Failed to delete muscle group."
+    "delete": "Failed to delete muscle group.",
+    "import": "Failed to import CSV. Please check the file and try again."
   }
 }

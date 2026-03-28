@@ -1,6 +1,9 @@
 {
   "title": "Grupos Musculares",
   "new": "Novo grupo",
+  "loading_more": "Carregando mais...",
+  "import_csv": "Importar CSV",
+  "importing": "Importando...",
   "edit": "Editar grupo",
   "empty": "Nenhum grupo muscular cadastrado.",
   "fields": {
@@ -22,6 +25,7 @@
   "errors": {
     "load": "Erro ao carregar grupos musculares.",
     "save": "Erro ao salvar grupo muscular.",
-    "delete": "Erro ao excluir grupo muscular."
+    "delete": "Erro ao excluir grupo muscular.",
+    "import": "Erro ao importar CSV. Verifique o arquivo e tente novamente."
   }
 }

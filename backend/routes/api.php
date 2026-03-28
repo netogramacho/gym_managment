@@ -29,6 +29,7 @@ Route::prefix('v1')->group(function () {
         Route::get('/exercises/{id}', [ExerciseController::class, 'show']);
         Route::middleware('role:admin')->group(function () {
             Route::post('/exercises', [ExerciseController::class, 'store']);
+            Route::post('/exercises/import', [ExerciseController::class, 'import']);
             Route::put('/exercises/{exercise}', [ExerciseController::class, 'update']);
             Route::delete('/exercises/{exercise}', [ExerciseController::class, 'destroy']);
         });
@@ -36,6 +37,7 @@ Route::prefix('v1')->group(function () {
         Route::get('/muscle-groups', [MuscleGroupController::class, 'index']);
         Route::middleware('role:admin')->group(function () {
             Route::post('/muscle-groups', [MuscleGroupController::class, 'store']);
+            Route::post('/muscle-groups/import', [MuscleGroupController::class, 'import']);
             Route::put('/muscle-groups/{muscleGroup}', [MuscleGroupController::class, 'update']);
             Route::delete('/muscle-groups/{muscleGroup}', [MuscleGroupController::class, 'destroy']);
         });

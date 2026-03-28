@@ -1,19 +1,19 @@
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Modal } from '../../components/ui/Modal'
-import { MultiSelect } from '../../components/ui/MultiSelect'
-import { exerciseService } from '../../services/exerciseService'
-import { exerciseTypeService } from '../../services/exerciseTypeService'
-import { muscleGroupService } from '../../services/muscleGroupService'
-import type { Exercise, ExerciseFormData } from '../../types/exercise'
-import type { ExerciseType } from '../../types/exerciseType'
-import type { MuscleGroup } from '../../types/muscleGroup'
+import { Modal } from '../../../components/ui/Modal'
+import { MultiSelect } from '../../../components/ui/MultiSelect'
+import { exerciseService } from '../../../services/exerciseService'
+import { exerciseTypeService } from '../../../services/exerciseTypeService'
+import { muscleGroupService } from '../../../services/muscleGroupService'
+import type { Exercise, ExerciseFormData } from '../../../types/exercise'
+import type { ExerciseType } from '../../../types/exerciseType'
+import type { MuscleGroup } from '../../../types/muscleGroup'
 
 interface ExerciseFormModalProps {
   isOpen: boolean
   exercise?: Exercise
   onClose: () => void
-  onSuccess: (exercise: Exercise) => void
+  onSuccess: () => void
 }
 
 const EMPTY_FORM: ExerciseFormData = {
@@ -71,7 +71,7 @@ export function ExerciseFormModal({ isOpen, exercise, onClose, onSuccess }: Exer
       const result = exercise
         ? await exerciseService.update(exercise.id, payload)
         : await exerciseService.create(payload)
-      onSuccess(result)
+      onSuccess()
       onClose()
     } catch {
       setError(t('errors.save'))

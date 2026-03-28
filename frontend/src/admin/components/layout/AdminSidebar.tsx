@@ -1,15 +1,16 @@
-import { LayoutDashboard, Dumbbell, History, LogOut } from 'lucide-react'
+import { LayoutDashboard, Settings, LogOut } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
-import { useAuth } from '../../contexts/AuthContext'
-import { SidebarNavItem } from './SidebarNavItem'
+import { useAuth } from '../../../contexts/AuthContext'
+import { SidebarNavItem } from '../../../components/layout/SidebarNavItem'
+import { SidebarNavGroup } from '../../../components/layout/SidebarNavGroup'
 
-interface SidebarProps {
+interface AdminSidebarProps {
   isExpanded: boolean
   isMobileOpen: boolean
   onCloseMobile: () => void
 }
 
-export function Sidebar({ isExpanded, isMobileOpen, onCloseMobile }: SidebarProps) {
+export function AdminSidebar({ isExpanded, isMobileOpen, onCloseMobile }: AdminSidebarProps) {
   const { t } = useTranslation('navigation')
   const { t: tAuth } = useTranslation('auth')
   const { logout } = useAuth()
@@ -26,27 +27,23 @@ export function Sidebar({ isExpanded, isMobileOpen, onCloseMobile }: SidebarProp
     >
       <nav className="flex-1 p-3 space-y-1">
         <SidebarNavItem
-          path="/"
+          path="/admin"
           label={t('dashboard')}
           icon={<LayoutDashboard size={20} />}
           isExpanded={isExpanded}
           onNavigate={onCloseMobile}
         />
 
-        <SidebarNavItem
-          path="/workouts"
-          label={t('workouts')}
-          icon={<Dumbbell size={20} />}
+        <SidebarNavGroup
+          label={t('exercises_group')}
+          icon={<Settings size={20} />}
           isExpanded={isExpanded}
           onNavigate={onCloseMobile}
-        />
-
-        <SidebarNavItem
-          path="/history"
-          label={t('history')}
-          icon={<History size={20} />}
-          isExpanded={isExpanded}
-          onNavigate={onCloseMobile}
+          items={[
+            { path: '/admin/exercises', label: t('exercises') },
+            { path: '/admin/exercise-types', label: t('exercise_types') },
+            { path: '/admin/muscle-groups', label: t('muscle_groups') },
+          ]}
         />
       </nav>
 

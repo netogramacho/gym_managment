@@ -1,6 +1,9 @@
 {
   "title": "Exercises",
   "new": "New exercise",
+  "loading_more": "Loading more...",
+  "import_csv": "Import CSV",
+  "importing": "Importing...",
   "edit": "Edit exercise",
   "empty": "No exercises found.",
   "fields": {
@@ -28,6 +31,7 @@
   "errors": {
     "load": "Failed to load exercises.",
     "save": "Failed to save exercise.",
-    "delete": "Failed to delete exercise."
+    "delete": "Failed to delete exercise.",
+    "import": "Failed to import CSV. Please check the file and try again."
   }
 }

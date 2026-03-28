@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Exercise\ImportExerciseCsvRequest;
 use App\Http\Requests\Exercise\StoreExerciseRequest;
 use App\Http\Requests\Exercise\UpdateExerciseRequest;
 use App\Http\Resources\ExerciseResource;
 use App\Models\Exercise;
+use App\Services\ExerciseCsvImportService;
 use App\Services\ExerciseService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -14,7 +16,10 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class ExerciseController extends Controller
 {
-    public function __construct(private readonly ExerciseService $exerciseService) {}
+    public function __construct(
+        private readonly ExerciseService $exerciseService,
+        private readonly ExerciseCsvImportService $csvImportService,
+    ) {}
 
     public function index(): AnonymousResourceCollection
     {
@@ -50,5 +55,15 @@ class ExerciseController extends Controller
         $this->exerciseService->delete($exercise);
 
         return response()->json(null, 204);
+    }
+
+    public function import(ImportExerciseCsvRequest $request): JsonResponse
+    {
+        $result = $this->csvImportService->import(
+            $request->file('file'),
+            $request->user()->id,
+        );
+
+        return response()->json($result);
     }
 }

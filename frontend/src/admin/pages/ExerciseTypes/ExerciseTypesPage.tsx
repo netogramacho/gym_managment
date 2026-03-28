@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Pencil, Trash2, Plus } from 'lucide-react'
-import { exerciseTypeService } from '../../services/exerciseTypeService'
-import { Modal } from '../../components/ui/Modal'
-import { ConfirmDialog } from '../../components/ui/ConfirmDialog'
-import type { ExerciseType } from '../../types/exerciseType'
+import { exerciseTypeService } from '../../../services/exerciseTypeService'
+import { Modal } from '../../../components/ui/Modal'
+import { ConfirmDialog } from '../../../components/ui/ConfirmDialog'
+import type { ExerciseType } from '../../../types/exerciseType'
 
 export function ExerciseTypesPage() {
   const { t } = useTranslation('exercise_types')
@@ -112,7 +112,7 @@ export function ExerciseTypesPage() {
               {items.length === 0 ? (
                 <tr>
                   <td colSpan={2} className="px-4 py-6 text-center text-sm text-gray-400 dark:text-gray-500">
-                    {t('empty')}
+                    {isLoading ? '' : t('empty')}
                   </td>
                 </tr>
               ) : (

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\MuscleGroup\ImportMuscleGroupCsvRequest;
 use App\Http\Requests\MuscleGroup\StoreMuscleGroupRequest;
 use App\Http\Requests\MuscleGroup\UpdateMuscleGroupRequest;
 use App\Http\Resources\MuscleGroupResource;
 use App\Models\MuscleGroup;
+use App\Services\MuscleGroupCsvImportService;
 use App\Services\MuscleGroupService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -14,7 +16,10 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class MuscleGroupController extends Controller
 {
-    public function __construct(private readonly MuscleGroupService $muscleGroupService) {}
+    public function __construct(
+        private readonly MuscleGroupService $muscleGroupService,
+        private readonly MuscleGroupCsvImportService $csvImportService,
+    ) {}
 
     public function index(): AnonymousResourceCollection
     {
@@ -45,5 +50,15 @@ class MuscleGroupController extends Controller
         $this->muscleGroupService->delete($muscleGroup);
 
         return response()->json(null, 204);
+    }
+
+    public function import(ImportMuscleGroupCsvRequest $request): JsonResponse
+    {
+        $result = $this->csvImportService->import(
+            $request->file('file'),
+            $request->user()->id,
+        );
+
+        return response()->json($result);
     }
 }

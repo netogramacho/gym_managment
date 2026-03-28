@@ -1,6 +1,9 @@
 {
   "title": "Exercícios",
   "new": "Novo exercício",
+  "loading_more": "Carregando mais...",
+  "import_csv": "Importar CSV",
+  "importing": "Importando...",
   "edit": "Editar exercício",
   "empty": "Nenhum exercício cadastrado.",
   "fields": {
@@ -28,6 +31,7 @@
   "errors": {
     "load": "Erro ao carregar exercícios.",
     "save": "Erro ao salvar exercício.",
-    "delete": "Erro ao excluir exercício."
+    "delete": "Erro ao excluir exercício.",
+    "import": "Erro ao importar CSV. Verifique o arquivo e tente novamente."
   }
 }

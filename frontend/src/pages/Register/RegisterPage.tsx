@@ -21,8 +21,8 @@ export function RegisterPage() {
     setIsLoading(true)
 
     try {
-      await register({ name, email, password, password_confirmation: passwordConfirmation })
-      navigate('/')
+      const user = await register({ name, email, password, password_confirmation: passwordConfirmation })
+      navigate(user.role === 'admin' ? '/admin' : '/')
     } catch {
       setError(t('register.error'))
     } finally {
