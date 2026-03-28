@@ -1,0 +1,7 @@
+{
+  "unauthenticated": "Unauthenticated.",
+  "unauthorized": "Unauthorized.",
+  "not_found": "Resource not found.",
+  "server_error": "Internal server error.",
+  "unknown": "An unexpected error occurred."
+}

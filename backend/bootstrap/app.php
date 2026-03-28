@@ -29,25 +29,25 @@ return Application::configure(basePath: dirname(__DIR__))
 
         $exceptions->render(function (AuthenticationException $e): JsonResponse {
             return response()->json([
-                'message' => 'Unauthenticated.',
+                'message' => __('auth.unauthenticated'),
             ], 401);
         });
 
         $exceptions->render(function (AuthorizationException $e): JsonResponse {
             return response()->json([
-                'message' => 'Unauthorized.',
+                'message' => __('auth.unauthorized'),
             ], 403);
         });
 
         $exceptions->render(function (ModelNotFoundException $e): JsonResponse {
             return response()->json([
-                'message' => 'Resource not found.',
+                'message' => __('errors.not_found'),
             ], 404);
         });
 
         $exceptions->render(function (Throwable $e): JsonResponse {
             return response()->json([
-                'message' => 'Internal server error.',
+                'message' => __('errors.server_error'),
             ], 500);
         });
     })->create();
