@@ -1,0 +1,27 @@
+{
+  "title": "Muscle Groups",
+  "new": "New group",
+  "edit": "Edit group",
+  "empty": "No muscle groups found.",
+  "fields": {
+    "name": "Name"
+  },
+  "actions": {
+    "save": "Save",
+    "saving": "Saving...",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete"
+  },
+  "confirm_delete": {
+    "title": "Delete muscle group",
+    "message": "Are you sure you want to delete \"{{name}}\"? This action cannot be undone.",
+    "confirm": "Delete",
+    "cancel": "Cancel"
+  },
+  "errors": {
+    "load": "Failed to load muscle groups.",
+    "save": "Failed to save muscle group.",
+    "delete": "Failed to delete muscle group."
+  }
+}

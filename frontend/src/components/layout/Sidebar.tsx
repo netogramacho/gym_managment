@@ -1,15 +1,8 @@
-import { LayoutDashboard, Dumbbell, History, LogOut, ListChecks } from 'lucide-react'
+import { LayoutDashboard, Dumbbell, History, LogOut, Settings } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { useAuth } from '../../contexts/AuthContext'
 import { SidebarNavItem } from './SidebarNavItem'
-import type { User } from '../../types/auth'
-
-interface NavItem {
-  path: string
-  label: string
-  icon: React.ReactNode
-  roles: Array<User['role']>
-}
+import { SidebarNavGroup } from './SidebarNavGroup'
 
 interface SidebarProps {
   isExpanded: boolean
@@ -21,39 +14,56 @@ export function Sidebar({ isExpanded, isMobileOpen, onCloseMobile }: SidebarProp
   const { t } = useTranslation('navigation')
   const { t: tAuth } = useTranslation('auth')
   const { user, logout } = useAuth()
-
-  const navItems: NavItem[] = [
-    { path: '/', label: t('dashboard'), icon: <LayoutDashboard size={20} />, roles: ['user', 'trainer', 'admin'] },
-    { path: '/workouts', label: t('workouts'), icon: <Dumbbell size={20} />, roles: ['user', 'trainer', 'admin'] },
-    { path: '/exercises', label: t('exercises'), icon: <ListChecks size={20} />, roles: ['admin'] },
-    { path: '/history', label: t('history'), icon: <History size={20} />, roles: ['user', 'trainer', 'admin'] },
-  ]
-
-  const visibleItems = navItems.filter(
-    (item) => user?.role && item.roles.includes(user.role)
-  )
+  const isAdmin = user?.role === 'admin'
 
   return (
     <aside
       className={[
         'flex flex-col bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 transition-all duration-300',
-        // Mobile: fixed overlay, always full width
         'fixed inset-y-0 left-0 z-50 w-64',
         isMobileOpen ? 'translate-x-0' : '-translate-x-full',
-        // Desktop: static in flex flow, variable width, always visible
         'lg:static lg:inset-auto lg:z-auto lg:translate-x-0 lg:h-full',
         isExpanded ? 'lg:w-60' : 'lg:w-16',
       ].join(' ')}
     >
       <nav className="flex-1 p-3 space-y-1">
-        {visibleItems.map((item) => (
-          <SidebarNavItem
-            key={item.path}
-            {...item}
+        <SidebarNavItem
+          path="/"
+          label={t('dashboard')}
+          icon={<LayoutDashboard size={20} />}
+          isExpanded={isExpanded}
+          onNavigate={onCloseMobile}
+        />
+
+        <SidebarNavItem
+          path="/workouts"
+          label={t('workouts')}
+          icon={<Dumbbell size={20} />}
+          isExpanded={isExpanded}
+          onNavigate={onCloseMobile}
+        />
+
+        {isAdmin && (
+          <SidebarNavGroup
+            label={t('exercises_group')}
+            icon={<Settings size={20} />}
             isExpanded={isExpanded}
             onNavigate={onCloseMobile}
+            items={[
+              { path: '/exercises', label: t('exercises') },
+              { path: '/exercise-types', label: t('exercise_types') },
+              { path: '/muscle-groups', label: t('muscle_groups') },
+            ]}
           />
-        ))}
+        )}
+
+        <SidebarNavItem
+          path="/history"
+          label={t('history')}
+          icon={<History size={20} />}
+          isExpanded={isExpanded}
+          onNavigate={onCloseMobile}
+        />
       </nav>
 
       <div className="p-3 border-t border-gray-200 dark:border-gray-800">

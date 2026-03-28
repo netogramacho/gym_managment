@@ -1,6 +1,9 @@
 {
   "dashboard": "Dashboard",
   "workouts": "Treinos",
+  "exercises_group": "Configurações",
   "exercises": "Exercícios",
+  "exercise_types": "Tipos de Exercício",
+  "muscle_groups": "Grupos Musculares",
   "history": "Histórico"
 }

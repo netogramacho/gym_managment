@@ -1,0 +1,27 @@
+{
+  "title": "Tipos de Exercício",
+  "new": "Novo tipo",
+  "edit": "Editar tipo",
+  "empty": "Nenhum tipo cadastrado.",
+  "fields": {
+    "name": "Nome"
+  },
+  "actions": {
+    "save": "Salvar",
+    "saving": "Salvando...",
+    "cancel": "Cancelar",
+    "edit": "Editar",
+    "delete": "Excluir"
+  },
+  "confirm_delete": {
+    "title": "Excluir tipo",
+    "message": "Tem certeza que deseja excluir \"{{name}}\"? Esta ação não pode ser desfeita.",
+    "confirm": "Excluir",
+    "cancel": "Cancelar"
+  },
+  "errors": {
+    "load": "Erro ao carregar tipos de exercício.",
+    "save": "Erro ao salvar tipo de exercício.",
+    "delete": "Erro ao excluir tipo de exercício."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "title": "Exercícios",
+  "new": "Novo exercício",
+  "edit": "Editar exercício",
+  "empty": "Nenhum exercício cadastrado.",
+  "fields": {
+    "name": "Nome",
+    "description": "Descrição",
+    "media_url": "URL de mídia",
+    "exercise_type": "Tipo de exercício",
+    "exercise_type_placeholder": "Selecione um tipo",
+    "muscle_groups": "Grupos musculares",
+    "muscle_groups_placeholder": "Selecione os grupos"
+  },
+  "actions": {
+    "save": "Salvar",
+    "saving": "Salvando...",
+    "cancel": "Cancelar",
+    "edit": "Editar",
+    "delete": "Excluir"
+  },
+  "confirm_delete": {
+    "title": "Excluir exercício",
+    "message": "Tem certeza que deseja excluir \"{{name}}\"? Esta ação não pode ser desfeita.",
+    "confirm": "Excluir",
+    "cancel": "Cancelar"
+  },
+  "errors": {
+    "load": "Erro ao carregar exercícios.",
+    "save": "Erro ao salvar exercício.",
+    "delete": "Erro ao excluir exercício."
+  }
+}

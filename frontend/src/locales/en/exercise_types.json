@@ -1,0 +1,27 @@
+{
+  "title": "Exercise Types",
+  "new": "New type",
+  "edit": "Edit type",
+  "empty": "No exercise types found.",
+  "fields": {
+    "name": "Name"
+  },
+  "actions": {
+    "save": "Save",
+    "saving": "Saving...",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete"
+  },
+  "confirm_delete": {
+    "title": "Delete type",
+    "message": "Are you sure you want to delete \"{{name}}\"? This action cannot be undone.",
+    "confirm": "Delete",
+    "cancel": "Cancel"
+  },
+  "errors": {
+    "load": "Failed to load exercise types.",
+    "save": "Failed to save exercise type.",
+    "delete": "Failed to delete exercise type."
+  }
+}

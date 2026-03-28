@@ -1,6 +1,9 @@
 {
   "dashboard": "Dashboard",
   "workouts": "Workouts",
+  "exercises_group": "Settings",
   "exercises": "Exercises",
+  "exercise_types": "Exercise Types",
+  "muscle_groups": "Muscle Groups",
   "history": "History"
 }

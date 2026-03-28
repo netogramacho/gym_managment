@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find C:UsersGamerDocumentsworkspacegym_managmentbackend -type d -not -path */node_modules* -not -path */vendor* -not -path */storage* -not -path */.git* -not -path */bootstrap/cache*)"
+    ]
+  }
+}

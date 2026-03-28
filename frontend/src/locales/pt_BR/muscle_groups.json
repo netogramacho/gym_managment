@@ -1,0 +1,27 @@
+{
+  "title": "Grupos Musculares",
+  "new": "Novo grupo",
+  "edit": "Editar grupo",
+  "empty": "Nenhum grupo muscular cadastrado.",
+  "fields": {
+    "name": "Nome"
+  },
+  "actions": {
+    "save": "Salvar",
+    "saving": "Salvando...",
+    "cancel": "Cancelar",
+    "edit": "Editar",
+    "delete": "Excluir"
+  },
+  "confirm_delete": {
+    "title": "Excluir grupo muscular",
+    "message": "Tem certeza que deseja excluir \"{{name}}\"? Esta ação não pode ser desfeita.",
+    "confirm": "Excluir",
+    "cancel": "Cancelar"
+  },
+  "errors": {
+    "load": "Erro ao carregar grupos musculares.",
+    "save": "Erro ao salvar grupo muscular.",
+    "delete": "Erro ao excluir grupo muscular."
+  }
+}

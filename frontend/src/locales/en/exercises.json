@@ -1,0 +1,33 @@
+{
+  "title": "Exercises",
+  "new": "New exercise",
+  "edit": "Edit exercise",
+  "empty": "No exercises found.",
+  "fields": {
+    "name": "Name",
+    "description": "Description",
+    "media_url": "Media URL",
+    "exercise_type": "Exercise type",
+    "exercise_type_placeholder": "Select a type",
+    "muscle_groups": "Muscle groups",
+    "muscle_groups_placeholder": "Select muscle groups"
+  },
+  "actions": {
+    "save": "Save",
+    "saving": "Saving...",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete"
+  },
+  "confirm_delete": {
+    "title": "Delete exercise",
+    "message": "Are you sure you want to delete \"{{name}}\"? This action cannot be undone.",
+    "confirm": "Delete",
+    "cancel": "Cancel"
+  },
+  "errors": {
+    "load": "Failed to load exercises.",
+    "save": "Failed to save exercise.",
+    "delete": "Failed to delete exercise."
+  }
+}

@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { loadingStore } from '../store/loadingStore'
 
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL ?? 'http://localhost:8000/api/v1',
@@ -13,7 +14,19 @@ api.interceptors.request.use((config) => {
   if (token) {
     config.headers.Authorization = `Bearer ${token}`
   }
+  loadingStore.increment()
   return config
 })
+
+api.interceptors.response.use(
+  (response) => {
+    loadingStore.decrement()
+    return response
+  },
+  (error) => {
+    loadingStore.decrement()
+    return Promise.reject(error)
+  },
+)
 
 export default api
