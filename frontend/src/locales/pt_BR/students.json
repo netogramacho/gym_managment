@@ -1,0 +1,24 @@
+{
+  "title": "Meus Alunos",
+  "add": "Adicionar aluno",
+  "empty": "Nenhum aluno cadastrado.",
+  "fields": {
+    "email": "E-mail do aluno"
+  },
+  "actions": {
+    "add": "Adicionar",
+    "adding": "Adicionando...",
+    "remove": "Remover"
+  },
+  "confirm_remove": {
+    "title": "Remover aluno",
+    "message": "Tem certeza que deseja remover \"{{name}}\" dos seus alunos?",
+    "confirm": "Remover",
+    "cancel": "Cancelar"
+  },
+  "errors": {
+    "load": "Erro ao carregar alunos.",
+    "add": "Erro ao adicionar aluno.",
+    "remove": "Erro ao remover aluno."
+  }
+}

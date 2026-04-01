@@ -7,9 +7,9 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class ExerciseService
 {
-    public function list(): LengthAwarePaginator
+    public function list(int $perPage = 20): LengthAwarePaginator
     {
-        return Exercise::with('type', 'muscleGroups')->paginate(20);
+        return Exercise::with('type', 'muscleGroups')->paginate($perPage);
     }
 
     public function find(string $id): Exercise

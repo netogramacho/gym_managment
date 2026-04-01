@@ -21,9 +21,11 @@ class ExerciseController extends Controller
         private readonly ExerciseCsvImportService $csvImportService,
     ) {}
 
-    public function index(): AnonymousResourceCollection
+    public function index(Request $request): AnonymousResourceCollection
     {
-        return ExerciseResource::collection($this->exerciseService->list());
+        $perPage = min((int) $request->query('per_page', 20), 100);
+
+        return ExerciseResource::collection($this->exerciseService->list($perPage));
     }
 
     public function show(string $id): ExerciseResource

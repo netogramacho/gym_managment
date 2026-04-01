@@ -2,8 +2,8 @@ import api from './api'
 import type { Exercise, ExerciseFormData, PaginatedResponse } from '../types/exercise'
 
 export const exerciseService = {
-  async list(page = 1): Promise<PaginatedResponse<Exercise>> {
-    const { data } = await api.get<PaginatedResponse<Exercise>>('/exercises', { params: { page } })
+  async list(page = 1, perPage = 20): Promise<PaginatedResponse<Exercise>> {
+    const { data } = await api.get<PaginatedResponse<Exercise>>('/exercises', { params: { page, per_page: perPage } })
     return data
   },
 

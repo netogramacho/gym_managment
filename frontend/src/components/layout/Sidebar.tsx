@@ -1,4 +1,4 @@
-import { LayoutDashboard, Dumbbell, History, LogOut } from 'lucide-react'
+import { LayoutDashboard, Dumbbell, History, LogOut, Users } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { useAuth } from '../../contexts/AuthContext'
 import { SidebarNavItem } from './SidebarNavItem'
@@ -12,7 +12,8 @@ interface SidebarProps {
 export function Sidebar({ isExpanded, isMobileOpen, onCloseMobile }: SidebarProps) {
   const { t } = useTranslation('navigation')
   const { t: tAuth } = useTranslation('auth')
-  const { logout } = useAuth()
+  const { logout, user } = useAuth()
+  const isTrainer = user?.role === 'trainer'
 
   return (
     <aside
@@ -40,6 +41,16 @@ export function Sidebar({ isExpanded, isMobileOpen, onCloseMobile }: SidebarProp
           isExpanded={isExpanded}
           onNavigate={onCloseMobile}
         />
+
+        {isTrainer && (
+          <SidebarNavItem
+            path="/students"
+            label={t('students')}
+            icon={<Users size={20} />}
+            isExpanded={isExpanded}
+            onNavigate={onCloseMobile}
+          />
+        )}
 
         <SidebarNavItem
           path="/history"

@@ -1,0 +1,24 @@
+{
+  "title": "My Students",
+  "add": "Add student",
+  "empty": "No students yet.",
+  "fields": {
+    "email": "Student email"
+  },
+  "actions": {
+    "add": "Add",
+    "adding": "Adding...",
+    "remove": "Remove"
+  },
+  "confirm_remove": {
+    "title": "Remove student",
+    "message": "Are you sure you want to remove \"{{name}}\" from your students?",
+    "confirm": "Remove",
+    "cancel": "Cancel"
+  },
+  "errors": {
+    "load": "Failed to load students.",
+    "add": "Failed to add student.",
+    "remove": "Failed to remove student."
+  }
+}

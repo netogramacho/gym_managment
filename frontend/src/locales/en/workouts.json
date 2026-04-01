@@ -1,0 +1,56 @@
+{
+  "title": "Workouts",
+  "new": "New workout",
+  "edit": "Edit workout",
+  "loading_more": "Loading more...",
+  "empty": "No workouts found.",
+  "fields": {
+    "name": "Name",
+    "description": "Description",
+    "for_who": "For who?",
+    "for_who_placeholder": "Select a student",
+    "for_myself": "Myself",
+    "exercises": "Exercises",
+    "exercise": "Exercise",
+    "exercise_placeholder": "Select an exercise",
+    "sets": "Sets",
+    "reps": "Reps",
+    "weight": "Weight (kg)",
+    "rest": "Rest (s)",
+    "add_exercise": "Add exercise"
+  },
+  "actions": {
+    "save": "Save",
+    "saving": "Saving...",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete",
+    "remove_exercise": "Remove",
+    "start": "Start workout",
+    "complete_set": "Complete set",
+    "skip_rest": "Skip rest",
+    "finish": "Back to workouts"
+  },
+  "execution": {
+    "exercise_of": "Exercise {{current}} of {{total}}",
+    "set_of": "Set {{current}} of {{total}}",
+    "reps": "{{count}} reps",
+    "rest_title": "Rest",
+    "rest_next": "Next",
+    "done_title": "Workout complete!",
+    "done_subtitle": "Great job! You finished all exercises.",
+    "loading": "Loading workout..."
+  },
+  "confirm_delete": {
+    "title": "Delete workout",
+    "message": "Are you sure you want to delete \"{{name}}\"? This action cannot be undone.",
+    "confirm": "Delete",
+    "cancel": "Cancel"
+  },
+  "errors": {
+    "load": "Failed to load workouts.",
+    "save": "Failed to save workout.",
+    "delete": "Failed to delete workout.",
+    "no_exercises": "Add at least one exercise."
+  }
+}

@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\ExerciseController;
 use App\Http\Controllers\Api\V1\ExerciseTypeController;
 use App\Http\Controllers\Api\V1\MuscleGroupController;
+use App\Http\Controllers\Api\V1\TrainerStudentController;
 use App\Http\Controllers\Api\V1\WorkoutController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,12 @@ Route::prefix('v1')->group(function () {
         Route::post('/workouts', [WorkoutController::class, 'store']);
         Route::put('/workouts/{workout}', [WorkoutController::class, 'update']);
         Route::delete('/workouts/{workout}', [WorkoutController::class, 'destroy']);
+
+        Route::middleware('role:trainer')->group(function () {
+            Route::get('/trainer/students', [TrainerStudentController::class, 'index']);
+            Route::post('/trainer/students', [TrainerStudentController::class, 'store']);
+            Route::delete('/trainer/students/{user}', [TrainerStudentController::class, 'destroy']);
+        });
 
         Route::get('/exercises', [ExerciseController::class, 'index']);
         Route::get('/exercises/{id}', [ExerciseController::class, 'show']);

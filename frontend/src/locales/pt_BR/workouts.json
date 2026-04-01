@@ -1,0 +1,56 @@
+{
+  "title": "Treinos",
+  "new": "Novo treino",
+  "edit": "Editar treino",
+  "loading_more": "Carregando mais...",
+  "empty": "Nenhum treino encontrado.",
+  "fields": {
+    "name": "Nome",
+    "description": "Descrição",
+    "for_who": "Para quem?",
+    "for_who_placeholder": "Selecione um aluno",
+    "for_myself": "Para mim",
+    "exercises": "Exercícios",
+    "exercise": "Exercício",
+    "exercise_placeholder": "Selecione um exercício",
+    "sets": "Séries",
+    "reps": "Reps",
+    "weight": "Carga (kg)",
+    "rest": "Descanso (s)",
+    "add_exercise": "Adicionar exercício"
+  },
+  "actions": {
+    "save": "Salvar",
+    "saving": "Salvando...",
+    "cancel": "Cancelar",
+    "edit": "Editar",
+    "delete": "Excluir",
+    "remove_exercise": "Remover",
+    "start": "Iniciar treino",
+    "complete_set": "Concluir série",
+    "skip_rest": "Pular descanso",
+    "finish": "Voltar aos treinos"
+  },
+  "execution": {
+    "exercise_of": "Exercício {{current}} de {{total}}",
+    "set_of": "Série {{current}} de {{total}}",
+    "reps": "{{count}} reps",
+    "rest_title": "Descansando",
+    "rest_next": "Próximo",
+    "done_title": "Treino concluído!",
+    "done_subtitle": "Ótimo trabalho! Você finalizou todos os exercícios.",
+    "loading": "Carregando treino..."
+  },
+  "confirm_delete": {
+    "title": "Excluir treino",
+    "message": "Tem certeza que deseja excluir \"{{name}}\"? Esta ação não pode ser desfeita.",
+    "confirm": "Excluir",
+    "cancel": "Cancelar"
+  },
+  "errors": {
+    "load": "Erro ao carregar treinos.",
+    "save": "Erro ao salvar treino.",
+    "delete": "Erro ao excluir treino.",
+    "no_exercises": "Adicione pelo menos um exercício."
+  }
+}
